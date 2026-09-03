@@ -1,25 +1,21 @@
 // ============ BUSINESS CONFIGURATION INTEGRATION ============
 if (window.BUSINESS_CONFIG) {
   const config = window.BUSINESS_CONFIG;
-  
-  // Update all WhatsApp links with pre-filled message
+
   const whatsappUrl = `https://wa.me/${config.whatsapp_number.replace('+', '')}?text=${encodeURIComponent(config.whatsapp_message)}`;
   document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
     link.href = whatsappUrl;
   });
-  
-  // Update all Call links with primary phone number
+
   document.querySelectorAll('a[href*="tel:"]').forEach(link => {
     link.href = `tel:${config.phone1_full}`;
   });
-  
-  // Update all Google Maps links with full address
+
   const mapsUrl = `https://maps.google.com/maps?q=${encodeURIComponent(config.google_maps_query)}`;
   document.querySelectorAll('a[href*="maps.google.com"]').forEach(link => {
     link.href = mapsUrl;
   });
-  
-  // Update Instagram links
+
   document.querySelectorAll('a[href*="instagram.com/hotbites"]').forEach(link => {
     link.href = config.instagram;
   });
@@ -52,11 +48,46 @@ tabs.forEach(tab => {
   });
 });
 
+// ============ FAQ ACCORDION ============
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => {
+  const question = item.querySelector('.faq-question');
+  if (!question) return;
+
+  question.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+
+    faqItems.forEach(faq => {
+      faq.classList.remove('open');
+      const button = faq.querySelector('.faq-question');
+      if (button) button.setAttribute('aria-expanded', 'false');
+    });
+
+    if (!isOpen) {
+      item.classList.add('open');
+      question.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+// ============ COMBO SCROLLING ============
+const comboRail = document.getElementById('comboRail');
+const comboLeft = document.querySelector('.combo-scroll-arrow.left');
+const comboRight = document.querySelector('.combo-scroll-arrow.right');
+
+if (comboRail && comboLeft && comboRight) {
+  const amount = 320;
+  comboLeft.addEventListener('click', () => {
+    comboRail.scrollBy({ left: -amount, behavior: 'smooth' });
+  });
+  comboRight.addEventListener('click', () => {
+    comboRail.scrollBy({ left: amount, behavior: 'smooth' });
+  });
+}
+
 // ============ ANALYTICS & TRACKING (OPTIONAL) ============
-// Track button clicks for analytics
 document.querySelectorAll('.btn, .sticky-btn, .nav-cta, .see-all-reviews, .contact-lines a').forEach(btn => {
-  btn.addEventListener('click', function(e) {
-    // Log button interactions (can be connected to analytics service)
+  btn.addEventListener('click', function() {
     const btnText = this.textContent.trim();
     const btnUrl = this.href || 'no-href';
     // console.log('Button clicked:', { text: btnText, url: btnUrl, timestamp: new Date() });
