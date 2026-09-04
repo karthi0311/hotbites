@@ -355,7 +355,7 @@
 
   /* ================= GALLERY ================= */
   .gallery-grid{
-    columns:2 220px; column-gap:14px;
+    columns:2 220px; column-gap:14px; max-width:700px; margin:0 auto;
   }
   .gallery-item{
     break-inside:avoid; margin-bottom:14px; border-radius:16px; overflow:hidden;
@@ -414,8 +414,10 @@
   .final-cta h2{font-size:clamp(34px,7vw,58px); margin-bottom:16px;}
   .final-cta p{color:var(--smoke); font-size:17px; max-width:480px; margin:0 auto 30px;}
   .final-ctas{display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-bottom:34px;}
+  .action-icon{width:20px; height:20px; flex:0 0 20px; fill:currentColor; display:inline-block;}
   .contact-lines{display:flex; justify-content:center; gap:30px; flex-wrap:wrap; font-size:15px; color:var(--smoke);}
   .contact-lines a{color:var(--cream); font-weight:700;}
+  .contact-item{display:inline-flex; align-items:center; gap:7px;}
 
   /* ================= FOOTER ================= */
   footer{background:var(--char-950); border-top:1px solid var(--line); padding:50px 0 100px;}
@@ -446,7 +448,8 @@
     font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.3px;
     padding:9px 4px; border-radius:12px; color:var(--cream);
   }
-  .sticky-btn .ic{font-size:18px;}
+  .sticky-btn .ic{font-size:18px; line-height:1;}
+  .whatsapp-sticky-icon{width:20px; height:20px; fill:currentColor; display:block;}
   .sticky-btn.wa{background:linear-gradient(120deg,#2CB742,#1E9E36); color:#fff;}
   .sticky-btn.call{background:linear-gradient(120deg,var(--ember),var(--chili)); color:#fff;}
   .sticky-btn.dir{background:var(--char-850); border:1px solid var(--line);}

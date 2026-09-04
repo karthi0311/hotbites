@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hotbites-madurai.vercel.app/sitemap.xml
